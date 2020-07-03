@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<title>Home</title>
+</head>
+<body>
+<div class="jumbotron bg-warning">
+    
+    {% if data %}
+    <a href="{% url 'dashboard' %}"><h1 class="text-center">Django Survey App</h1></a>
+    {% else %}
+    <h1 class="text-center">Django Survey App</h1>
+    {% endif %}
+    <p class="text-center">Intern Task</p>
+</div>
+{% if data %}
+
+<div>
+    <h1> Hello {{data.name}}!</h1>
+</div>
+<div>
+    <a type='button' href = "{% url 'response'  %}"><p>Check your responses</p></a>
+</div>
+
+<br><br>
+<div class="text-center">
+    <h2>List of Survey questions</h2>
+    {% for i in ques %}
+        <a href="{% url 'ques' pk=i.pk %}"><h3>{{i.question}}</h3></a>
+
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center pt-5">
+	<h3>If You are a New User Register Here</h3><a href="{% url 'register' %}">Register</a><br><br><br><br>
+</div>
+<div class="container text-center">
+    <h3>If you want to Sign In</h3><a href="{% url 'login' %}">login</a>
+</div>
+
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<title>User Login</title>
+	<style type="text/css">
+		input,select{
+            width: 400px!important;
+			margin-bottom: 10px;
+			border-radius: 0px!important;
+}
+button{
+	margin-top: 20px;
+	width: 200px;
+	border-radius: 0px!important;
+}
+#stu{
+	height: 140px!important;
+}
+
+
+	</style>
+
+
+
+</head>
+<body>
+<div class="jumbotron bg-warning" id="stu">
+	<h1 class="text-center">User Login</h1>
+</div>
+
+
+<div class="row h-75 w-100 justify-content-center align-items-center text-center">
+<form action="{% url 'login' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    
+    <input type="text" name="username" class="form-control" placeholder="Username" required="">
+	<input type="text" name = "password" class="form-control" placeholder="Password" required="">
+   
+
+    <button type="submit" class="btn btn-success text-center">Login</button>
+</form>
+</div>
+
+    
+</body>
+</html>

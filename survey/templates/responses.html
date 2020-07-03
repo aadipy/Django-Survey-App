@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<title>All Responses</title>
+</head>
+<body>
+<div class="jumbotron bg-warning">
+    {% if data %}
+    <a href="{% url 'dashboard' %}"><h1 class="text-center">Django Survey App</h1></a>
+    {% else %}
+    <h1 class="text-center">Django Survey App</h1>
+    {% endif %}
+    <p class="text-center">Intern Task</p>
+</div>
+{% if data %}
+
+<div>
+    <h1> Hello {{data.name}}!</h1>
+    <h3> Here are all your responses</h3>
+</div>
+
+<br><br>
+<div class="text-center">
+    
+    {% for i in responses %}
+        <h3>{{i.question_id.question}}</h3>
+        <a href="{% url 'edit' pk=i.pk %}">EDIT RESPONSE</a>
+        <a href="{% url 'report' pk=i.pk %}">Check Overall Report</a>
+        
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center pt-5">
+	<h3>If You are a New User Register Here</h3><a href="{% url 'register' %}">Register</a><br><br><br><br>
+</div>
+<div class="container text-center">
+    <h3>If you want to Sign In</h3><a href="{% url 'login' %}">login as Student</a>
+</div>
+<div class="container text-center">
+    <h3>Register as a Faculty</h3><a href="">Register as Faculty</a>
+</div>
+{% endif %}
+</body>
+</html>

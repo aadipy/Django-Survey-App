@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<title>Survey Page</title>
+</head>
+<body>
+<div class="jumbotron bg-warning">
+    {% if data %}
+    <a href="{% url 'dashboard' %}"><h1 class="text-center">Django Survey App</h1></a>
+    {% else %}
+    <h1 class="text-center">Django Survey App</h1>
+    {% endif %}
+    <p class="text-center">Intern Task</p>
+</div>
+{% if data %}
+<div>
+    <h1> Hello {{data.name}}!</h1>
+</div>
+<br><br>
+<div class="text-center">
+    <h1>{{ques.question}}</h1>
+</div>
+<br><br><br>
+<div class='text-center'>
+    <form action="{% url 'submit' pk=ques.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <textarea name = "answer"
+            rows = "3"
+            cols = "80"
+            placeholder="Your text here"></textarea>
+        <br>
+        <br>
+ 
+        <h2>Rating</h2></p><input type="number" name = "rating"  placeholder="1-5" min="0" max="5" required="">
+        <br>
+        <br>   
+        <button type="submit" class="btn btn-success text-center">Register</button>
+    </form>
+</div>
+{% else %}
+<div class="container text-center pt-5">
+	<h3>If You are a New User Register Here</h3><a href="{% url 'register' %}">Register</a><br><br><br><br>
+</div>
+<div class="container text-center">
+    <h3>If you want to Sign In</h3><a href="{% url 'login' %}">login as Student</a>
+</div>
+<div class="container text-center">
+    <h3>Register as a Faculty</h3><a href="">Register as Faculty</a>
+</div>
+{% endif %}
+</body>
+</html>
